@@ -4,6 +4,16 @@ Coding Bootcamping assigned #4, Code Quiz
 
 # 04 Web APIs
 The primary objectives of this exercise were to demonstrate the following:
+Javascript
+timers
+interation
+windo objects
+setting attributes
+event listeners
+keyboard events
+local storage
+
+
 
 # References / Resources 
 
@@ -12,6 +22,7 @@ The primary objectives of this exercise were to demonstrate the following:
 |Description|Link|
 |-----------|----|
 |Something Cool|link to something cool|
+|Button Generator|https://cssbuttoncreator.com/|
 
 # Screenshots
 ### Screen 1: **Initial Screen**
