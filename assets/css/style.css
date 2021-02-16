@@ -48,6 +48,28 @@ body {
     flex-direction: column;
 }
 
+#questions-page {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 5em;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+}
+#questions-text {
+   padding: 28px;
+}
+
+#answers-text {
+    padding: 5px 16px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 5em;
+    font-size: 1em;
+    justify-content: center;
+    align-items: center;
+}
+
 .button {
     background: #3D94F6;
     background-image: -webkit-linear-gradient(top, #3D94F6, #1E62D0);
