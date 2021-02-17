@@ -41,3 +41,8 @@ local storage
 ## Fun Stats
 * ![Last Commit](https://img.shields.io/github/last-commit/jonesjsc/04-Web-APIs-Code-Quiz)
 * ![Current Understanding level](https://img.shields.io/badge/Understanding%20Level-Gettin%20There-yellow)
+
+
+Javascript concepts
+https://www.w3schools.com/jsref/jsref_length_array.asp
+https://www.w3schools.com/jsref/jsref_splice.asp

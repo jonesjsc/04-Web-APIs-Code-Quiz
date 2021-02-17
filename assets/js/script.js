@@ -1,9 +1,12 @@
 var startBtn = document.querySelector(".start-button");
 // var startPage = document.querySelector("#start-page");
 var startPage = document.getElementById("start-page");
+var gamePage = document.getElementById("game-page");
+var questionsPage = document.getElementById("questions-page");
 
 startBtn.addEventListener("click", function () {
     startPage.style.display = "none";
+    questionsPage.style.display = "flex";
     // document.getElementById("start-page").style.display = "none";
 });
 
@@ -62,4 +65,7 @@ var currentQuestion = questions[chosenQuestionNum];
 console.log ("current question is " + currentQuestion.question.toString());
 questions.splice (chosenQuestionNum,1);
 // console.log ("after removing index " + chosenQuestionNum + " we have " + questions.length + " questions left");
+
+
+
 };
