@@ -3,19 +3,23 @@ var startBtn = document.querySelector(".start-button");
 var startPage = document.getElementById("start-page");
 var gamePage = document.getElementById("game-page");
 var questionsPage = document.getElementById("questions-page");
-var buttonAnswerEl = document.getElementById("answer-button");
+// var buttonAnswerEl = document.getElementById("answer-button");
 var buttonDiv = document.getElementById("button-ol");
 
 
 startBtn.addEventListener("click", function () {
   startPage.style.display = "none";
-  questionsPage.style.display = "flex";
+  questionCard.style.display = "flex";
   // document.getElementById("start-page").style.display = "none";
 });
 
 var QuizTable = [];
 var IndividualQuestion = [];
 var questionIndex = 0;
+var questionCard = document.querySelector("#question-card");
+var btnCreate = document.createElement("button");
+
+
 
 var questions =
   [
@@ -64,10 +68,48 @@ var questions =
 // for (var i = 0; i < questions.length; i++) {
 // }
 for (var j = 0; j < questions[questionIndex].choices.length; j++) {
-  var buttonAnswerEl = $(`<button class='button answer-btn'>${questions[i].choices[j]}</button>`);
-  buttonAnswerEl.onclick = someFunctionName;
-  buttonDiv.append(buttonAnswerEl)
+  
+  // console.log (questions[questionIndex].choices[j]);
+  var buttonAnswerEl = (`<button class='button answer-btn'>${questions[questionIndex].choices[j]}</button>`);
+  $('.btn').button();
+  // var myBtn = document.createElement("button");
+  // myBtn.textContent = "here";
+  // myBtn.document.createElement("button");
+  // var buttonAnswerEl = (`<button class='button answer-btn'></button>`);
+  // buttonAnswerEl.onclick = someFunctionName;
+  // buttonDiv.append(buttonAnswerEl);
 }
+
+
+function render(questionNumber) {
+
+  // Clears existing data 
+  
+  questionCard.innerHTML = "";
+  btnCreate.innerHTML = "";
+  
+  // For loops to loop through all info in array
+  
+  for (var i = 0; i < questions.length; i++) {
+      // Appends question title only
+      var userQuestion = questions[questionIndex].question;
+      var allAvailableChoices = questions[questionIndex].choices;
+      questionCard.textContent = userQuestion;
+  }
+  
+  // New for each for question choices
+  
+  allAvailableChoices.forEach(function (newItem) {
+      var listItem = document.createElement("button");
+      listItem.textContent = newItem;
+      questionCard.appendChild(btnCreate);
+      btnCreate.appendChild(listItem);
+      // listItem.addEventListener("click", (compare));
+  })
+
+}
+
+// render(0);
 
 // while (quanswers.lquestions[i].choices[j] {
 // // console.log ("there are "+questions.length+" elements in the questions array");
@@ -82,14 +124,16 @@ for (var j = 0; j < questions[questionIndex].choices.length; j++) {
 // };
 
 // for (var i = 0; i < questions.length; i++) {
-for (var i in questions) {
-  currentquestion = questions[i].question;
-  console.log("The question is " + questions[i].question);
-  console.log("the correct answer is " + questions[i].correctAnswer);
-  for (var j in questions[i].choices) {
-    console.log("Option number " + j + " is " + questions[i].choices[j]);
-  }
-}
+
+
+// for (var i in questions) {
+//   currentquestion = questions[i].question;
+//   console.log("The question is " + questions[i].question);
+//   console.log("the correct answer is " + questions[i].correctAnswer);
+//   for (var j in questions[i].choices) {
+//     console.log("Option number " + j + " is " + questions[i].choices[j]);
+//   }
+// }
 
 // for (var i = 0; i < questions.length; i++) {
 //   currentquestion = questions[i].question;

@@ -50,7 +50,7 @@ body {
     padding: 2em;
 }
 
-#questions-page {
+#question-card {
     display: none;
     flex-direction: column;
     background-color: purple;
