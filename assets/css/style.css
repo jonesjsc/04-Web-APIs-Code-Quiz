@@ -141,8 +141,6 @@ body {
 }
 
 .answer-btn {
-    /* min-width: 45ch;
-    max-width: 45ch; */
     word-break: break-word;
     list-style-type: none;
     text-align: left;
