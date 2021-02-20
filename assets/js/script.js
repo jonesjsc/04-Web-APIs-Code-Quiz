@@ -70,17 +70,23 @@ for (var j = 0; j < questions[questionIndex].choices.length; j++) {
   
   // console.log (questions[questionIndex].choices[j]);
   var buttonAnswerEl = `<button class='button answer-btn'>${questions[questionIndex].choices[j]}</button>`;
-  console.log(buttonAnswerEl);
-  document.body.append(${buttonAnswerEl});
+  // buttonolEl.innerHTML += buttonAnswerEl;
+  buttonolEl.innerHTML += buttonAnswerEl;
+  buttonolEl.onclick = helloworld;
   
+
+
   // var myBtn = document.createElement("button");
   // myBtn.textContent = "here";
   // myBtn.document.createElement("button");
   // var buttonAnswerEl = (`<button class='button answer-btn'></button>`);
-  // buttonAnswerEl.onclick = someFunctionName;
   // buttonDiv.append(buttonAnswerEl);
 }
 
+function helloworld (ev) {
+  console.log ("hello here");
+  console.log (this.innerText);
+}
 
 function render(questionNumber) {
 
