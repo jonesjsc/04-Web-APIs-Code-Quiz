@@ -10,6 +10,7 @@ interation
 windo objects
 setting attributes
 event listeners
+event delegation
 keyboard events
 local storage
 
