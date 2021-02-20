@@ -69,9 +69,9 @@ var questions =
 for (var j = 0; j < questions[questionIndex].choices.length; j++) {
   
   // console.log (questions[questionIndex].choices[j]);
-  var buttonAnswerEl = (`<button class='button answer-btn'>${questions[questionIndex].choices[j]}</button>`);
+  var buttonAnswerEl = `<button class='button answer-btn'>${questions[questionIndex].choices[j]}</button>`;
   console.log(buttonAnswerEl);
-  document.body.appendChild(buttonAnswerEl);
+  document.body.append(${buttonAnswerEl});
   
   // var myBtn = document.createElement("button");
   // myBtn.textContent = "here";
