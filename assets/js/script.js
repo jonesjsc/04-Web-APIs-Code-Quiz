@@ -5,8 +5,6 @@ var gamePage = document.getElementById("game-page");
 var questionsPage = document.getElementById("questions-page");
 // var buttonAnswerEl = document.getElementById("answer-button");
 var buttonDiv = document.getElementById("button-ol");
-
-
 startBtn.addEventListener("click", function () {
   startPage.style.display = "none";
   questionCard.style.display = "flex";
@@ -18,6 +16,7 @@ var IndividualQuestion = [];
 var questionIndex = 0;
 var questionCard = document.querySelector("#question-card");
 var btnCreate = document.createElement("button");
+var buttonolEl = document.querySelector("#button-ol");
 
 
 
@@ -71,7 +70,9 @@ for (var j = 0; j < questions[questionIndex].choices.length; j++) {
   
   // console.log (questions[questionIndex].choices[j]);
   var buttonAnswerEl = (`<button class='button answer-btn'>${questions[questionIndex].choices[j]}</button>`);
-  $('.btn').button();
+  console.log(buttonAnswerEl);
+  document.body.appendChild(buttonAnswerEl);
+  
   // var myBtn = document.createElement("button");
   // myBtn.textContent = "here";
   // myBtn.document.createElement("button");
