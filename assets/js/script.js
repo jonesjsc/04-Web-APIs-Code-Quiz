@@ -25,7 +25,6 @@ var lastScore = 0;
 
 scoreCard.style.display = "none";
 
-
 var questions =
   [
     {
@@ -66,55 +65,13 @@ function initGame () {
   startPage.style.display = "none";
   questionCard.style.display = "flex";
   quizOn = true;
-  console.log ("wtf "+" "+quizOn);
   countdownTimer();
   questionIndex = 0;
-  playOn();
-  // document.getElementById("start-page").style.display = "none";
-}
-
-function playOn () {
-  // for (questionIndex = 0; questionIndex < questions.length; questionIndex++) {
-  // console.log ("im here "+questionIndex+" "+quizOn);
-  //   if (quizOn == true) {
-  //     showQuestion (questions[questionIndex]);
-  //     console.log ("ive returned from showQuestion");
-  //   }
-  // }
   showQuestion (questions[questionIndex]); 
 }
 
-// showQuestion (questions[1]);
-
-
-// for (var i = 0; i < questions.length; i++) {
-//     currentquestion = questions[i].question;
-//     console.log ( currentquestion );
-//     var options = questions[i].choices;
-//       console.log ("question and choice 1 "+questions[i].choices[0]);
-//     console.log (options);
-//     for ( var opt in options ) {
-//          console.log (options[opt]);
-//        }
-//     }
-
-// for (var i = 0; i < questions.length; i++) {
-// }
-
-// function showQuestion (lquestion) {
-//   correctAnswer = questions[questionIndex].correctAnswer;
-//    for (var j = 0; j < questions[questionIndex].choices.length; j++) {
- 
-//      if (questions[questionIndex].choices[j] === questions[questionIndex]) {
-//        var answer=true;
-//        } else {
-//        var answer=false;
-//      }
-//      var buttonAnswerEl = `<button class='button answer-btn' data-isCorrect=${answer}>${questions[questionIndex].choices[j]}</button>`;
-//      buttonolEl.innerHTML += buttonAnswerEl;
-//      buttonolEl.onclick = answerCheck; 
-//    }
-//  }
+function playOn () {
+}
 
 function showQuestion (lquestion) {
 quizOn=false;
@@ -197,3 +154,32 @@ function displayScorePage () {
   finalScore.textContent = lastScore;
 
 }
+var initialFormEl = $('#initials-form');
+var winnersList = [];
+// create function to handle form submission
+function handleFormSubmit(event) {
+  event.preventDefault();
+
+  console.log ("entered handleFormSubmit");
+
+  // select form element by its `name` attribute and get its value
+  var winnerInitials = $('input[name="initials-input"]').val();
+
+  // if there's nothing in the form entered, don't print to the page
+  if (!winnerInitials) {
+    console.log('clicked submit but didnt enter initials');
+    return;
+  }
+
+  // local.storage array time
+  
+  console.log (winnerInitials);
+  console.log (lastScore);
+
+  // clear the form input element
+  $('input[name="initials-input"]').val('');
+
+}
+
+// Create a submit event listener on the form element
+initialFormEl.on('submit', handleFormSubmit);

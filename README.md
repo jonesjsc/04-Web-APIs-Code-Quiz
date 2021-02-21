@@ -34,16 +34,17 @@ local storage
 
 ## Links
 * This repo is located [on github](https://github.com/jonesjsc/04-Web-APIs-Code-Quiz)
-* This site should eventually be deployed on [github pages](https://jonesjsc.github.io/04-Web-APIs-Code-Quiz/)
+* This site is deployed on [github pages](https://jonesjsc.github.io/04-Web-APIs-Code-Quiz/)
 
 ## License
 * ![License](https://img.shields.io/github/license/jonesjsc/04-Web-APIs-Code-Quiz)
 
 ## Fun Stats
 * ![Last Commit](https://img.shields.io/github/last-commit/jonesjsc/04-Web-APIs-Code-Quiz)
-* ![Current Understanding level](https://img.shields.io/badge/Understanding%20Level-Gettin%20There-yellow)
+* ![Current Understanding level](https://img.shields.io/badge/Understanding%20Level-Struggling-red)
 
 
-Javascript concepts
+## Javascript concepts
+
 https://www.w3schools.com/jsref/jsref_length_array.asp
 https://www.w3schools.com/jsref/jsref_splice.asp
