@@ -5,9 +5,11 @@ var gamePage = document.getElementById("game-page");
 var questionsPage = document.getElementById("questions-page");
 // var buttonAnswerEl = document.getElementById("answer-button");
 var questionsText = document.getElementById("questions-text");
+var scoreCard = document.getElementById("score-card");
 
 var buttonDiv = document.getElementById("button-ol");
 var counterEl = document.getElementById("counter");
+var finalScore = document.getElementById("finalScore");
 var QuizTable = [];
 var correctAnswer = "";
 var IndividualQuestion = [];
@@ -15,12 +17,13 @@ var questionIndex = 0;
 var questionCard = document.querySelector("#question-card");
 var btnCreate = document.createElement("button");
 var buttonolEl = document.querySelector("#button-ol");
-var secondsLeft = 10;
+var secondsLeft = 99;
 var quizOn = false;
-console.log (questionIndex+" "+quizOn);
+var penalty = 10;
+var timerInterval;
+var lastScore = 0;
 
-
-
+scoreCard.style.display = "none";
 
 
 var questions =
@@ -57,15 +60,18 @@ var questions =
   ];
 
 
-startBtn.addEventListener("click", function () {
+startBtn.addEventListener("click", initGame); 
+
+function initGame () {
   startPage.style.display = "none";
   questionCard.style.display = "flex";
   quizOn = true;
   console.log ("wtf "+" "+quizOn);
   countdownTimer();
+  questionIndex = 0;
   playOn();
   // document.getElementById("start-page").style.display = "none";
-});
+}
 
 function playOn () {
   // for (questionIndex = 0; questionIndex < questions.length; questionIndex++) {
@@ -75,8 +81,7 @@ function playOn () {
   //     console.log ("ive returned from showQuestion");
   //   }
   // }
-  showQuestion (questions[0]);
-  showQuestion (questions[1]);
+  showQuestion (questions[questionIndex]); 
 }
 
 // showQuestion (questions[1]);
@@ -122,27 +127,27 @@ quizOn=false;
     var buttonAnswerEl = `<button class='button answer-btn'>${lquestion.choices[j]}</button>`; //build the HTML to render buttons
     buttonolEl.innerHTML += buttonAnswerEl;
   }
-  buttonolEl.onclick = answerCheck; // drop a click listener on that whole thing and call the answerCheck function when clicked
+buttonolEl.onclick = answerCheck; // drop a click listener on that whole thing and call the answerCheck function when clicked
 }
 
 function countdownTimer() {
   // quizOn = false;
   // Sets interval in variable
-  var timerInterval = setInterval(function() {
+   timerInterval = setInterval(function() {
     secondsLeft--;
-    counterEl.textContent = secondsLeft;
 
-    if(secondsLeft === 0) {
-      // Stops execution of action at set interval
+    if(secondsLeft < 0) {
+      secondsLeft = 0;
       clearInterval(timerInterval);
-      // Calls function to create and append image
-      console.log("DONE");
+      counterEl.textContent = secondsLeft;  // update counter here in case counter is negative
     }
+    counterEl.textContent = secondsLeft;  // update counter
 
   }, 1000);
 
 }
 function answerCheck (event) {
+  
   // the click listener is applied to the whole DIV - so it's possible to receive clicks in the DIV but
   // not on the button.  Fortunately, we can pull tagName from event.target and do stuff only if a 
   // button was clicked.
@@ -155,11 +160,40 @@ function answerCheck (event) {
   // so lets check them now and fire the approppriate steps.
   
   if (correctAnswer == event.target.textContent) {
-    console.log ("CORRECT and quizOn "+quizOn); // waits a second, then advances to the next question
+    console.log("correct answer");
+
     } else {
-    console.log ("INCORRECT and quizOn "+quizOn) // adjust downward the timer, waits a second, advanced to the next question
+    
+    if ((secondsLeft -= penalty) < 0) {  // we could easily deduct more time than is left on the clock so lets not do that
+      secondsLeft === 0;  
+    }
+    console.log("incorrect answer");
+    
   }
-  setTimeout(() => {  console.log("waiting"); }, 1000); // here's our waiting a second
-  quizOn=true;
+  questionIndex++; // progress to the next question
+  if (questionIndex < questions.length) {
+    console.log ("play on");
+    buttonolEl.innerHTML = "";
+    showQuestion (questions[questionIndex]);
+  
+    quizOn=true;
+  
+  } else {
+
+    lastScore = secondsLeft;
+    console.log ("your final score is "+lastScore);
+    clearInterval(timerInterval);
+    counterEl.textContent = secondsLeft;
+    displayScorePage ();
+
+  }
+  
+}
+
+function displayScorePage () {
+  console.log("displayScorePage "+lastScore);
+  questionCard.style.display = "none";
+  scoreCard.style.display = "flex";
+  finalScore.textContent = lastScore;
 
 }
