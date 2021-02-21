@@ -22,8 +22,17 @@ var quizOn = false;
 var penalty = 10;
 var timerInterval;
 var lastScore = 0;
+var highscore = [
+  {
+    WinnersInitials: "",
+    score: 0
+  }
+]
+localStorage.setItem("highscore", JSON.stringify(highscore));
+var highscore = JSON.parse(localStorage.getItem("highscore"));
+console.log(highscore);
 
-scoreCard.style.display = "none";
+scoreCard.style.display = "none"; //really we should start this display none
 
 var questions =
   [
@@ -59,22 +68,17 @@ var questions =
   ];
 
 
-startBtn.addEventListener("click", initGame); 
+startBtn.addEventListener("click", initGame);  // the game starts here
 
 function initGame () {
   startPage.style.display = "none";
   questionCard.style.display = "flex";
-  quizOn = true;
   countdownTimer();
   questionIndex = 0;
-  showQuestion (questions[questionIndex]); 
-}
-
-function playOn () {
+  showQuestion (questions[questionIndex]); // lets get the first question up
 }
 
 function showQuestion (lquestion) {
-quizOn=false;
  displayQuestion=false; // need to hold up until we get the click action
  questionsText.textContent = lquestion.question;  // push out the text of the question
  correctAnswer = lquestion.correctAnswer; // lets pull the correctAnswer out and hold it here
@@ -87,11 +91,9 @@ quizOn=false;
 buttonolEl.onclick = answerCheck; // drop a click listener on that whole thing and call the answerCheck function when clicked
 }
 
-function countdownTimer() {
-  // quizOn = false;
-  // Sets interval in variable
+function countdownTimer() {  
    timerInterval = setInterval(function() {
-    secondsLeft--;
+   secondsLeft--;
 
     if(secondsLeft < 0) {
       secondsLeft = 0;
@@ -99,7 +101,6 @@ function countdownTimer() {
       counterEl.textContent = secondsLeft;  // update counter here in case counter is negative
     }
     counterEl.textContent = secondsLeft;  // update counter
-
   }, 1000);
 
 }
@@ -127,20 +128,20 @@ function answerCheck (event) {
     console.log("incorrect answer");
     
   }
+
   questionIndex++; // progress to the next question
-  if (questionIndex < questions.length) {
+  
+  if (questionIndex < questions.length) { // if there are more questions let, continue
     console.log ("play on");
     buttonolEl.innerHTML = "";
     showQuestion (questions[questionIndex]);
   
-    quizOn=true;
-  
-  } else {
+  } else {  // otherwise we're done asking questions
 
     lastScore = secondsLeft;
     console.log ("your final score is "+lastScore);
     clearInterval(timerInterval);
-    counterEl.textContent = secondsLeft;
+    counterEl.textContent = secondsLeft; // lets update the screen with score.
     displayScorePage ();
 
   }
@@ -151,7 +152,7 @@ function displayScorePage () {
   console.log("displayScorePage "+lastScore);
   questionCard.style.display = "none";
   scoreCard.style.display = "flex";
-  finalScore.textContent = lastScore;
+  finalScore.textContent = lastScore; // let's update the main pager with the score
 
 }
 var initialFormEl = $('#initials-form');
@@ -160,7 +161,7 @@ var winnersList = [];
 function handleFormSubmit(event) {
   event.preventDefault();
 
-  console.log ("entered handleFormSubmit");
+  // console.log ("entered handleFormSubmit");
 
   // select form element by its `name` attribute and get its value
   var winnerInitials = $('input[name="initials-input"]').val();
@@ -171,10 +172,28 @@ function handleFormSubmit(event) {
     return;
   }
 
-  // local.storage array time
+  // local.storage array time - clearly there is work to be done here.
   
   console.log (winnerInitials);
   console.log (lastScore);
+
+  // I need to pull the highscore array from local storage, if there is one
+  // i need to json this from string to an array
+  // i need to add the new high score
+  // i need to display this on the screen
+  // i need to save this new highscore name and score combo to the local storage
+  
+  console.log (highscore);
+  // var highscore = [
+  //   {
+  //     WinnersInitials: "",
+  //     score: 0
+  //   }
+  // ]
+  // localStorage.setItem("highscore", JSON.stringify(highscore));
+  // var highscore = JSON.parse(localStorage.getItem("highscore"));
+
+
 
   // clear the form input element
   $('input[name="initials-input"]').val('');
